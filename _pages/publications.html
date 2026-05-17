@@ -2,35 +2,268 @@
 layout: archive
 title: "Publications"
 permalink: /publications/
-author_profile: true
+author_profile: false
+no_sidebar: true
+header:
+  overlay_image: background1.jpg
+  overlay_filter: 0.45
 ---
-
-{% if site.author.googlescholar %}
-  <div class="wordwrap">You can also find my articles on <a href="{{site.author.googlescholar}}">my Google Scholar profile</a>.</div>
-{% endif %}
 
 {% include base_path %}
 
-<!-- New style rendering if publication categories are defined -->
-{% if site.publication_category %}
-  {% for category in site.publication_category  %}
-    {% assign title_shown = false %}
-    {% for post in site.publications reversed %}
-      {% if post.category != category[0] %}
-        {% continue %}
-      {% endif %}
-      {% unless title_shown %}
-        <h2>{{ category[1].title }}</h2><hr />
-        {% assign title_shown = true %}
-      {% endunless %}
-      {% include archive-single.html %}
+<style>
+  .pub-intro {
+    margin-bottom: 1.5rem;
+    color: #475569;
+  }
+
+  .pub-section {
+    margin-top: 2.4rem;
+  }
+
+  .pub-section h2 {
+    margin-bottom: 0.35rem;
+  }
+
+  .pub-section-note {
+    margin: 0 0 1rem;
+    color: #64748b;
+    font-size: 0.95rem;
+  }
+
+  .pub-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+
+  .pub-item {
+    margin-bottom: 1rem;
+    padding: 1.05rem 1.15rem 0.95rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+  }
+
+  .pub-main {
+    margin: 0;
+    line-height: 1.75;
+    color: #1f2937;
+  }
+
+  .pub-authors-inline {
+    font-weight: 600;
+  }
+
+  .pub-links {
+    margin: 0.75rem 0 0;
+  }
+
+  .pub-title-link {
+    color: #0f172a;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .pub-title-link:hover {
+    text-decoration: underline;
+  }
+
+  .pub-journal {
+    font-style: italic;
+  }
+
+  .pub-year {
+    font-weight: 600;
+    color: #334155;
+  }
+
+  .pub-status {
+    font-weight: 600;
+    color: #0f766e;
+  }
+
+  .pub-button,
+  .pub-button-disabled {
+    display: inline-block;
+    margin-right: 0.6rem;
+    margin-bottom: 0.35rem;
+    padding: 0.38rem 0.72rem;
+    border-radius: 999px;
+    font-size: 0.88rem;
+    line-height: 1;
+    text-decoration: none;
+    border: 1px solid #cbd5e1;
+  }
+
+  .pub-button i,
+  .pub-button-disabled i {
+    margin-right: 0.35rem;
+  }
+
+  .pub-button {
+    color: #0f172a;
+    background: #ffffff;
+  }
+
+  .pub-button:hover {
+    background: #f8fafc;
+    text-decoration: none;
+  }
+
+  .pub-button-disabled {
+    color: #9ca3af;
+    background: #f3f4f6;
+    cursor: not-allowed;
+  }
+
+  .pub-button-loading {
+    color: #64748b;
+    background: #f8fafc;
+  }
+
+  .pub-doi {
+    border-color: #dbeafe;
+    background: #f8fbff;
+  }
+
+  @media (max-width: 640px) {
+    .pub-item {
+      padding: 0.9rem 0.95rem 0.85rem;
+      border-radius: 14px;
+    }
+
+    .pub-main {
+      line-height: 1.65;
+    }
+  }
+</style>
+
+{% assign peer_reviewed = site.publications | where: "publication_group", "peer_reviewed" | sort: "sort_order" %}
+{% assign conference_abstracts = site.publications | where: "publication_group", "conference_abstract" | sort: "date" | reverse %}
+
+{% if peer_reviewed.size > 0 %}
+<div class="pub-section">
+  <h2>Peer-reviewed Journal Papers</h2>
+  <ol class="pub-list">
+    {% for post in peer_reviewed %}
+    {% assign highlighted_authors = post.authors
+      | replace: "Yuhang Wang", "<strong>Yuhang Wang</strong>"
+      | replace: "Wang Y", "<strong>Wang Y</strong>" %}
+    {% assign pdf_href = post.pdfurl %}
+    {% assign attachment_href = post.attachmenturl %}
+    {% if post.pdfurl and post.pdfurl contains '/files/' and post.pdfurl contains 'http' == false %}
+      {% assign pdf_href = 'http://127.0.0.1:4000' | append: post.pdfurl %}
+    {% endif %}
+    {% if post.attachmenturl and post.attachmenturl contains '/files/' and post.attachmenturl contains 'http' == false %}
+      {% assign attachment_href = 'http://127.0.0.1:4000' | append: post.attachmenturl %}
+    {% endif %}
+    <li class="pub-item">
+      <p class="pub-main">
+        {% if post.authors %}<span class="pub-authors-inline">{{ highlighted_authors }}</span>. {% endif %}
+        <a class="pub-title-link" href="{{ base_path }}{{ post.url }}">{{ post.title }}</a>.
+        {% if post.status %}<span class="pub-status">({{ post.status }})</span>. {% endif %}
+        <span class="pub-journal">{{ post.journal | default: post.venue }}</span>{% if post.pub_year %} <span class="pub-year">{{ post.pub_year }}</span>{% elsif post.date %} <span class="pub-year">{{ post.date | date: "%Y" }}</span>{% endif %}
+        {% if post.volume %} {{ post.volume }}{% endif %}
+        {% if post.pages %}: {{ post.pages }}{% endif %}.
+      </p>
+      <p class="pub-links">
+        {% if post.pdfurl %}<a class="pub-button" href="{{ pdf_href }}"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i>PDF</a>{% else %}<span class="pub-button-disabled"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i>PDF</span>{% endif %}
+        {% unless post.hide_attachment %}{% if post.attachmenturl %}<a class="pub-button" href="{{ attachment_href }}"><i class="fa-solid fa-paperclip" aria-hidden="true"></i>Attachment</a>{% else %}<span class="pub-button-disabled"><i class="fa-solid fa-paperclip" aria-hidden="true"></i>Attachment</span>{% endif %}{% endunless %}
+        {% if post.appurl %}<a class="pub-button" href="{{ post.appurl }}"><i class="fa-solid fa-globe" aria-hidden="true"></i>{{ post.applabel | default: "App" }}</a>{% endif %}
+        {% if post.doi %}
+          <a class="pub-button pub-button-loading js-citation-button" href="https://openalex.org/works?filter=doi:{{ post.doi | downcase | uri_escape }}" data-doi="{{ post.doi | downcase }}" data-fallback-url="https://openalex.org/works?filter=doi:{{ post.doi | downcase | uri_escape }}" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-quote-right" aria-hidden="true"></i>Citations (...)</a>
+        {% elsif post.citationurl %}
+          <a class="pub-button" href="{{ post.citationurl }}" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-quote-right" aria-hidden="true"></i>Citations</a>
+        {% elsif post.citationurl and post.citation_count %}
+          <a class="pub-button" href="{{ post.citationurl }}"><i class="fa-solid fa-quote-right" aria-hidden="true"></i>Citations ({{ post.citation_count }})</a>
+        {% elsif post.citation_count %}
+          <span class="pub-button"><i class="fa-solid fa-quote-right" aria-hidden="true"></i>Citations ({{ post.citation_count }})</span>
+        {% else %}
+          <span class="pub-button-disabled"><i class="fa-solid fa-quote-right" aria-hidden="true"></i>Citations</span>
+        {% endif %}
+      </p>
+    </li>
     {% endfor %}
-  {% endfor %}
-{% else %}
-  {% for post in site.publications reversed %}
-    {% include archive-single.html %}
-  {% endfor %}
+  </ol>
+</div>
 {% endif %}
 
+{% if conference_abstracts.size > 0 %}
+<div class="pub-section">
+  <h2>Conference Abstracts</h2>
+  <ol class="pub-list">
+    {% for post in conference_abstracts %}
+    {% assign highlighted_authors = post.authors
+      | replace: "Yuhang Wang", "<strong>Yuhang Wang</strong>"
+      | replace: "Wang Y", "<strong>Wang Y</strong>" %}
+    {% assign pdf_href = post.pdfurl %}
+    {% assign attachment_href = post.attachmenturl %}
+    {% if post.pdfurl and post.pdfurl contains '/files/' and post.pdfurl contains 'http' == false %}
+      {% assign pdf_href = 'http://127.0.0.1:4000' | append: post.pdfurl %}
+    {% endif %}
+    {% if post.attachmenturl and post.attachmenturl contains '/files/' and post.attachmenturl contains 'http' == false %}
+      {% assign attachment_href = 'http://127.0.0.1:4000' | append: post.attachmenturl %}
+    {% endif %}
+    <li class="pub-item">
+      <p class="pub-main">
+        {% if post.authors %}<span class="pub-authors-inline">{{ highlighted_authors }}</span>. {% endif %}
+        <a class="pub-title-link" href="{{ base_path }}{{ post.url }}">{{ post.title }}</a>.
+        <span class="pub-journal">{{ post.journal | default: post.venue }}</span>{% if post.pub_year %} <span class="pub-year">{{ post.pub_year }}</span>{% elsif post.date %} <span class="pub-year">{{ post.date | date: "%Y" }}</span>{% endif %}{% if post.location %}, {{ post.location }}{% endif %}{% if post.conference_dates %}, {{ post.conference_dates }}{% endif %}.
+      </p>
+      <p class="pub-links">
+        {% if post.pdfurl %}<a class="pub-button" href="{{ pdf_href }}"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i>PDF</a>{% else %}<span class="pub-button-disabled"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i>PDF</span>{% endif %}
+        {% unless post.hide_attachment %}{% if post.attachmenturl %}<a class="pub-button" href="{{ attachment_href }}"><i class="fa-solid fa-paperclip" aria-hidden="true"></i>Attachment</a>{% else %}<span class="pub-button-disabled"><i class="fa-solid fa-paperclip" aria-hidden="true"></i>Attachment</span>{% endif %}{% endunless %}
+        {% if post.doi %}
+          <a class="pub-button pub-button-loading js-citation-button" href="https://openalex.org/works?filter=doi:{{ post.doi | downcase | uri_escape }}" data-doi="{{ post.doi | downcase }}" data-fallback-url="https://openalex.org/works?filter=doi:{{ post.doi | downcase | uri_escape }}" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-quote-right" aria-hidden="true"></i>Citations (...)</a>
+        {% elsif post.citationurl %}
+          <a class="pub-button" href="{{ post.citationurl }}" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-quote-right" aria-hidden="true"></i>Citations</a>
+        {% elsif post.citationurl and post.citation_count %}
+          <a class="pub-button" href="{{ post.citationurl }}"><i class="fa-solid fa-quote-right" aria-hidden="true"></i>Citations ({{ post.citation_count }})</a>
+        {% elsif post.citation_count %}
+          <span class="pub-button"><i class="fa-solid fa-quote-right" aria-hidden="true"></i>Citations ({{ post.citation_count }})</span>
+        {% else %}
+          <span class="pub-button-disabled"><i class="fa-solid fa-quote-right" aria-hidden="true"></i>Citations</span>
+        {% endif %}
+      </p>
+    </li>
+    {% endfor %}
+  </ol>
+</div>
+{% endif %}
 
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var buttons = document.querySelectorAll(".js-citation-button[data-doi]");
 
+    buttons.forEach(function (button) {
+      var doi = button.getAttribute("data-doi");
+      if (!doi) return;
+
+      fetch("https://api.openalex.org/works?filter=doi:" + encodeURIComponent(doi))
+        .then(function (response) {
+          if (!response.ok) throw new Error("OpenAlex request failed");
+          return response.json();
+        })
+        .then(function (data) {
+          var result = data && data.results && data.results[0];
+          var count = result && typeof result.cited_by_count === "number" ? result.cited_by_count : null;
+          var openalexId = result && result.id ? result.id : null;
+
+          if (count === null) throw new Error("Citation count missing");
+
+          button.innerHTML = '<i class="fa-solid fa-quote-right" aria-hidden="true"></i>Citations (' + count + ')';
+          button.classList.remove("pub-button-loading");
+
+          if (openalexId) {
+            button.href = openalexId.replace("https://api.openalex.org/", "https://openalex.org/");
+          }
+        })
+        .catch(function () {
+          button.innerHTML = '<i class="fa-solid fa-quote-right" aria-hidden="true"></i>Citations';
+          button.classList.remove("pub-button-loading");
+        });
+    });
+  });
+</script>

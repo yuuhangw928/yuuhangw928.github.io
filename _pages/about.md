@@ -1,56 +1,329 @@
 ---
 permalink: /
-title: "Academic Pages is a ready-to-fork GitHub Pages template for academic personal websites"
+title: ""
 author_profile: true
-redirect_from: 
+redirect_from:
   - /about/
   - /about.html
 ---
 
-This is the front page of a website that is powered by the [Academic Pages template](https://github.com/academicpages/academicpages.github.io) and hosted on GitHub pages. [GitHub pages](https://pages.github.com) is a free service in which websites are built and hosted from code and data stored in a GitHub repository, automatically updating when a new commit is made to the repository. This template was forked from the [Minimal Mistakes Jekyll Theme](https://mmistakes.github.io/minimal-mistakes/) created by Michael Rose, and then extended to support the kinds of content that academics have: publications, talks, teaching, a portfolio, blog posts, and a dynamically-generated CV. Incidentally, these same features make it a great template for anyone that needs to show off a professional template!
+<style>
+  .home-hero {
+    margin-bottom: 2rem;
+    padding: 1.5rem 1.6rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 18px;
+    background:
+      radial-gradient(circle at top right, rgba(59, 130, 246, 0.12), transparent 28%),
+      linear-gradient(135deg, #f8fbff 0%, #ffffff 62%);
+    box-shadow: 0 14px 34px rgba(15, 23, 42, 0.07);
+  }
 
- You can fork [this template](https://github.com/academicpages/academicpages.github.io) right now, modify the configuration and Markdown files, add your own PDFs and other content, and have your own site for free, with no ads!
+  .home-name {
+    margin: 0 0 0.35rem;
+    font-size: 2rem;
+    line-height: 1.1;
+  }
 
-A data-driven personal website
-======
-Like many other Jekyll-based GitHub Pages templates, Academic Pages makes you separate the website's content from its form. The content & metadata of your website are in structured Markdown files, while various other files constitute the theme, specifying how to transform that content & metadata into HTML pages. You keep these various Markdown (.md), YAML (.yml), HTML, and CSS files in a public GitHub repository. Each time you commit and push an update to the repository, the [GitHub pages](https://pages.github.com/) service creates static HTML pages based on these files, which are hosted on GitHub's servers free of charge.
+  .home-meta {
+    margin: 0 0 0.9rem;
+    color: #475569;
+    font-size: 0.98rem;
+  }
 
-Many of the features of dynamic content management systems (like Wordpress) can be achieved in this fashion, using a fraction of the computational resources and with far less vulnerability to hacking and DDoSing. You can also modify the theme to your heart's content without touching the content of your site. If you get to a point where you've broken something in Jekyll/HTML/CSS beyond repair, your Markdown files describing your talks, publications, etc. are safe. You can rollback the changes or even delete the repository and start over - just be sure to save the Markdown files! You can also write scripts that process the structured data on the site, such as [this one](https://github.com/academicpages/academicpages.github.io/blob/master/talkmap.ipynb) that analyzes metadata in pages about talks to display [a map of every location you've given a talk](https://academicpages.github.io/talkmap.html).
+  .home-summary {
+    margin: 0;
+    line-height: 1.8;
+    color: #1f2937;
+  }
 
-For those users that need more advanced functionality, the template also supports the following popular tools:
-- [MathJax](https://www.mathjax.org/) for mathematical equations
-- [Mermaid](https://mermaid.js.org/) for diagraming
-- [Plotly](https://plotly.com/javascript/) for plotting
+  .home-tags {
+    margin-top: 1rem;
+  }
 
-Getting started
-======
-1. Register a GitHub account if you don't have one and confirm your e-mail (required!)
-1. Fork [this template](https://github.com/academicpages/academicpages.github.io) by clicking the "Use this template" button in the top right. 
-1. Go to the repository's settings (rightmost item in the tabs that start with "Code", should be below "Unwatch"). Rename the repository "[your GitHub username].github.io", which will also be your website's URL.
-1. Set site-wide configuration and create content & metadata (see below -- also see [this set of diffs](https://archive.is/3TPas) showing what files were changed to set up [an example site](https://getorg-testacct.github.io) for a user with the username "getorg-testacct")
-1. Upload any files (like PDFs, .zip files, etc.) to the files/ directory. They will appear at https://[your GitHub username].github.io/files/example.pdf.  
-1. Check status by going to the repository settings, in the "GitHub pages" section
+  .home-tag {
+    display: inline-block;
+    margin: 0 0.5rem 0.45rem 0;
+    padding: 0.38rem 0.75rem;
+    border-radius: 999px;
+    background: #f2f8ff;
+    border: 1px solid #cfe5ff;
+    font-size: 0.9rem;
+    color: #1e3a5f;
+  }
 
-Site-wide configuration
-------
-The main configuration file for the site is in the base directory in [_config.yml](https://github.com/academicpages/academicpages.github.io/blob/master/_config.yml), which defines the content in the sidebars and other site-wide features. You will need to replace the default variables with ones about yourself and your site's github repository. The configuration file for the top menu is in [_data/navigation.yml](https://github.com/academicpages/academicpages.github.io/blob/master/_data/navigation.yml). For example, if you don't have a portfolio or blog posts, you can remove those items from that navigation.yml file to remove them from the header. 
+  .home-links {
+    margin-top: 1.15rem;
+  }
 
-Create content & metadata
-------
-For site content, there is one Markdown file for each type of content, which are stored in directories like _publications, _talks, _posts, _teaching, or _pages. For example, each talk is a Markdown file in the [_talks directory](https://github.com/academicpages/academicpages.github.io/tree/master/_talks). At the top of each Markdown file is structured data in YAML about the talk, which the theme will parse to do lots of cool stuff. The same structured data about a talk is used to generate the list of talks on the [Talks page](https://academicpages.github.io/talks), each [individual page](https://academicpages.github.io/talks/2012-03-01-talk-1) for specific talks, the talks section for the [CV page](https://academicpages.github.io/cv), and the [map of places you've given a talk](https://academicpages.github.io/talkmap.html) (if you run this [python file](https://github.com/academicpages/academicpages.github.io/blob/master/talkmap.py) or [Jupyter notebook](https://github.com/academicpages/academicpages.github.io/blob/master/talkmap.ipynb), which creates the HTML for the map based on the contents of the _talks directory).
+  .home-link {
+    display: inline-block;
+    margin: 0 0.55rem 0.45rem 0;
+    padding: 0.5rem 0.9rem;
+    border-radius: 999px;
+    text-decoration: none;
+    border: 1px solid #d1d5db;
+    background: #fff;
+    color: #111827;
+    font-size: 0.92rem;
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.05);
+  }
 
-**Markdown generator**
+  .home-link:hover {
+    background: #f8fafc;
+    text-decoration: none;
+  }
 
-The repository includes [a set of Jupyter notebooks](https://github.com/academicpages/academicpages.github.io/tree/master/markdown_generator
-) that converts a CSV containing structured data about talks or presentations into individual Markdown files that will be properly formatted for the Academic Pages template. The sample CSVs in that directory are the ones I used to create my own personal website at stuartgeiger.com. My usual workflow is that I keep a spreadsheet of my publications and talks, then run the code in these notebooks to generate the Markdown files, then commit and push them to the GitHub repository.
+  .home-section {
+    margin: 1.5rem 0 0;
+    padding: 1.25rem 1.35rem;
+    border: 1px solid #eceff3;
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
+  }
 
-How to edit your site's GitHub repository
-------
-Many people use a git client to create files on their local computer and then push them to GitHub's servers. If you are not familiar with git, you can directly edit these configuration and Markdown files directly in the github.com interface. Navigate to a file (like [this one](https://github.com/academicpages/academicpages.github.io/blob/master/_talks/2012-03-01-talk-1.md) and click the pencil icon in the top right of the content preview (to the right of the "Raw | Blame | History" buttons). You can delete a file by clicking the trashcan icon to the right of the pencil icon. You can also create new files or upload files by navigating to a directory and clicking the "Create new file" or "Upload files" buttons. 
+  .home-section h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+  }
 
-Example: editing a Markdown file for a talk
-![Editing a Markdown file for a talk](/images/editing-talk.png)
+  .home-entry {
+    margin-bottom: 1.1rem;
+  }
 
-For more info
-------
-More info about configuring Academic Pages can be found in [the guide](https://academicpages.github.io/markdown/), the [growing wiki](https://github.com/academicpages/academicpages.github.io/wiki), and you can always [ask a question on GitHub](https://github.com/academicpages/academicpages.github.io/discussions). The [guides for the Minimal Mistakes theme](https://mmistakes.github.io/minimal-mistakes/docs/configuration/) (which this theme was forked from) might also be helpful.
+  .home-entry:last-child {
+    margin-bottom: 0;
+  }
+
+  .home-entry-title {
+    margin: 0 0 0.2rem;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  .home-entry-meta {
+    margin: 0;
+    color: #64748b;
+    font-size: 0.95rem;
+  }
+
+  .home-news {
+    display: grid;
+    gap: 0.8rem;
+    max-height: 245px;
+    overflow-y: auto;
+    padding-right: 0.35rem;
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 #f8fafc;
+  }
+
+  .home-news::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .home-news::-webkit-scrollbar-track {
+    background: #f8fafc;
+    border-radius: 999px;
+  }
+
+  .home-news::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 999px;
+  }
+
+  .home-news-item {
+    display: grid;
+    grid-template-columns: 88px 1fr;
+    gap: 0.9rem;
+    align-items: start;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px dashed #dbe4ee;
+  }
+
+  .home-news-item:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .home-news-date {
+    display: inline-block;
+    padding: 0.24rem 0.55rem;
+    border-radius: 999px;
+    background: #eef6ff;
+    border: 1px solid #d3e6ff;
+    color: #1d4f8c;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .home-news-text {
+    margin: 0;
+    color: #1f2937;
+    line-height: 1.75;
+  }
+
+  .home-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .home-card {
+    padding: 1rem 1.05rem;
+    border: 1px solid #edf0f4;
+    border-radius: 14px;
+    background: #fbfdff;
+  }
+
+  .home-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.7rem;
+    font-size: 1rem;
+  }
+
+  .home-card ul {
+    margin: 0;
+  }
+
+  .home-scroll-list {
+    max-height: 245px;
+    overflow-y: auto;
+    padding-right: 0.35rem;
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 #f8fafc;
+  }
+
+  .home-scroll-list::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .home-scroll-list::-webkit-scrollbar-track {
+    background: #f8fafc;
+    border-radius: 999px;
+  }
+
+  .home-scroll-list::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 999px;
+  }
+
+  @media (max-width: 760px) {
+    .home-hero,
+    .home-section {
+      padding: 1.1rem;
+    }
+
+    .home-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .home-name {
+      font-size: 1.7rem;
+    }
+
+    .home-news-item {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+  }
+</style>
+
+<div class="home-hero">
+  <h1 class="home-name">Yuhang Wang</h1>
+  <p class="home-meta">yuuhangww@gmail.com | +86 198-2916-8033 | Xi'an, China</p>
+  <p class="home-summary">
+    I am interested in coastal ecology, mangrove remote sensing, and wetland monitoring. My research work focuses on mangrove restoration assessment, time-series remote sensing, and geospatial applications for wetland monitoring.
+  </p>
+  <div class="home-links">
+    <a class="home-link" href="/publications/">📚 Publications</a>
+    <a class="home-link" href="/research/">🔬 Research</a>
+    <a class="home-link" href="/work/">💼 Work</a>
+    <a class="home-link" href="/meetings/">🎤 Conference</a>
+  </div>
+</div>
+
+<div class="home-section">
+  <h2>📰 News</h2>
+
+  <div class="home-news">
+    <div class="home-news-item">
+      <span class="home-news-date">2026-05-16</span>
+      <p class="home-news-text">The Google Earth Engine APP for spatial coupling visualization of wetland degradation and human activities in the Pearl River Delta was released. <a href="https://2220902167.users.earthengine.app/view/wetlandlosshumanactivitycoupling" style="display: inline-block; margin-left: 0.35rem; padding: 0.18rem 0.55rem; border-radius: 999px; background: #2563eb; color: #ffffff; text-decoration: none; font-size: 0.74rem; line-height: 1.15; font-weight: 600; vertical-align: middle;">Wetland Dynamic Driving App</a></p>
+    </div>
+
+    <div class="home-news-item">
+      <span class="home-news-date">2026-04-15</span>
+      <p class="home-news-text">The Google Earth Engine APP of the Mangrove Restoration Effectiveness Index (MREI) for China coastal regions during the period of coastal shelterbelt engineering construction was released. <a href="https://2220902167.users.earthengine.app/view/mangroverestorationeffectivenessindex" style="display: inline-block; margin-left: 0.35rem; padding: 0.18rem 0.55rem; border-radius: 999px; background: #2563eb; color: #ffffff; text-decoration: none; font-size: 0.74rem; line-height: 1.15; font-weight: 600; vertical-align: middle;">MREI GEE App</a></p>
+    </div>
+
+    <div class="home-news-item">
+      <span class="home-news-date">2026-02-28</span>
+      <p class="home-news-text">Joined Xi'an Envmap Digital Technology Co., Ltd. as a Remote Sensing Algorithm Engineer, focusing on lightning-caused wildfire monitoring.</p>
+    </div>
+
+    <div class="home-news-item">
+      <span class="home-news-date">2026-01-30</span>
+      <p class="home-news-text">The mangrove plantation monitoring (TRPMM) paper was accepted by <em>Wetland Science</em>.</p>
+    </div>
+
+    <div class="home-news-item">
+      <span class="home-news-date">2024-09-07</span>
+      <p class="home-news-text">Submitted the abstract and poster for the 4th International Forum on Big Data for Sustainable Development Goals (FBAS) in Beijing.</p>
+    </div>
+  </div>
+</div>
+
+<div class="home-section">
+  <h2>🎓 Education</h2>
+
+  <div class="home-entry">
+    <p class="home-entry-title">Capital Normal University (CNU), Beijing, China</p>
+    <p class="home-entry-meta">M.Sc. in Geographic Information Science and Remote Sensing | GPA: 90.50/100 | 09/2022-06/2025</p>
+  </div>
+
+  <div class="home-entry">
+    <p class="home-entry-title">Xi'an University of Science and Technology (XUST), Xi'an, Shaanxi, China</p>
+    <p class="home-entry-meta">B.Sc. in Geographic Information Science | GPA: 84.34/100 | 09/2018-06/2022</p>
+  </div>
+</div>
+
+<div class="home-section">
+  <h2>💼 Work Experience</h2>
+
+  <div class="home-entry">
+    <p class="home-entry-title">Xi'an Envmap Digital Technology Co., Ltd.</p>
+    <p class="home-entry-meta">Remote Sensing Algorithm Engineer | 02/2026-Present</p>
+  </div>
+
+  <div class="home-entry">
+    <p class="home-entry-title">Xi'an Innovative Aviation Technology Co., Ltd.</p>
+    <p class="home-entry-meta">UAV Pre-sales Engineer | 06/2025-12/2025</p>
+  </div>
+</div>
+
+<div class="home-grid">
+  <div class="home-section home-card">
+    <h3>🏆 Awards and Honors</h3>
+    <ul class="home-scroll-list">
+      <li>First Prize of the National College Student Mathematics Competition, Shaanxi Province Division (Top 5%)</li>
+      <li>Excellent Oral Presentation Award of the 5th China Conference on Remote Sensing of Wetlands (Top 5%)</li>
+      <li>First-Class Scholarship of CNU (Top 10%)</li>
+      <li>Merit Student Award of CNU (Top 10%)</li>
+      <li>Third Prize of the National English Competition for College Students, Shaanxi Province Division (Top 15%)</li>
+      <li>Second-Class Scholarship of CNU (Top 20%)</li>
+    </ul>
+  </div>
+
+  <div class="home-section home-card">
+    <h3>🛠 Skills</h3>
+    <ul>
+      <li>Programming and Analysis: Python, R, MATLAB</li>
+      <li>Remote Sensing and GIS: Google Earth Engine, ArcGIS Pro, QGIS, ENVI, SNAP</li>
+      <li>Research Skills: Time-series remote sensing, machine learning, deep learning, change detection</li>
+      <li>Languages: English (CET-6)</li>
+    </ul>
+  </div>
+</div>

@@ -1,33 +1,67 @@
-# The following is the order of the links in the header of the website.
-#
-# Changing the order here will adjust the order and you can also add additional
-# links. Removing a link prevents it from showing in the header, but does not
-# prevent it from being included in the site.
-#
-# NOTE that only one of the CV options should be selected, the first is for the
-#      Markdown formatted page while the second is generated using JSON.
-
+# Top navigation
 main:
   - title: "Publications"
     url: /publications/
 
-  - title: "Talks"
-    url: /talks/    
+  - title: "Research"
+    url: /research/
+    children:
+      - title: "Overview"
+        url: /research/
+      - title: "Mangrove Restoration Effectiveness Index"
+        url: /research/mrei/
+      - title: "Threshold- and Rule-based Planted Mangrove Monitoring"
+        url: /research/trpmm/
+      - title: "Driving Mechanisms of Wetland Dynamics"
+        url: /research/wetland-dynamics/
 
-  - title: "Teaching"
-    url: /teaching/    
-    
-  - title: "Portfolio"
-    url: /portfolio/
-        
-  - title: "Blog Posts"
-    url: /year-archive/
-    
-  - title: "CV"
-    url: /cv/
-    
-  # - title: "CV"
-  #   url: /cv-json/
-    
-  - title: "Guide"
-    url: /markdown/
+  - title: "Work"
+    url: /work/
+    children:
+      - title: "Overview"
+        url: /work/
+      - title: "UAV Industrial Inspection"
+        url: /work/uav-industrial-inspection/
+      - title: "Lightning Fire RS"
+        url: /work/lightning-fire-rs/
+
+  - title: "Other Activities"
+    url: /meetings/
+    children:
+      - title: "Conference"
+        url: /meetings/
+      - title: "Field Work"
+        url: /meetings/field-work/
+
+# Sidebar navigation for research pages
+research:
+  - title: "Research"
+    children:
+      - title: "Overview"
+        url: /research/
+      - title: "Mangrove Restoration Effectiveness Index"
+        url: /research/mrei/
+      - title: "Threshold- and Rule-based Planted Mangrove Monitoring"
+        url: /research/trpmm/
+      - title: "Driving Mechanisms of Wetland Dynamics"
+        url: /research/wetland-dynamics/
+
+# Sidebar navigation for work pages
+work:
+  - title: "Work"
+    children:
+      - title: "Overview"
+        url: /work/
+      - title: "UAV Industrial Inspection"
+        url: /work/uav-industrial-inspection/
+      - title: "Lightning Fire RS"
+        url: /work/lightning-fire-rs/
+
+# Sidebar navigation for other activities pages
+meetings:
+  - title: "Other Activities"
+    children:
+      - title: "Conference"
+        url: /meetings/
+      - title: "Field Work"
+        url: /meetings/field-work/

@@ -22,25 +22,25 @@ repository               : "yuuhangw928/yuuhangw928.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "profile.png"
-  name             : "Your Sidebar Name"
+  avatar           : "photo.png"
+  name             : "Yuhang Wang"
   pronouns         : # example: "she/her"  
-  bio              : "Short biography for the left-hand sidebar"
-  location         : "Earth"
-  employer         : "Red Brick University"
+  bio              : "Coastal Ecology | Mangrove Remote Sensing | Wetland Monitoring | Time-series Analysis"
+  location         : "Xi'an, China"
+  employer         : "Capital Normal University"
   uri              : # URL
-  email            : "none@example.org" 
+  email            : "yuuhangww@gmail.com"
 
   # Academic websites
   academia         : # URL
   arxiv            : # URL - Update with the correct link to your profile
-  googlescholar    : "https://scholar.google.com/citations?user=PS_CX0AAAAAJ"
+  googlescholar    :
   inspire-hep      : # URL
   impactstory      : # URL
-  orcid            : "https://orcid.org/yourorcidurl"
+  orcid            :
   semantic         : # URL
   ssrn             : # URL
-  pubmed           : "https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
+  pubmed           :
   researchgate     : # URL
   scopus           : # URL
   zotero           : # URL
@@ -50,13 +50,13 @@ author:
   bitbucket        : # Username - Update with your username on the site
   codepen          : # Username
   dribbble         : # Username
-  github           : "academicpages"
+  github           : "yuuhangw928"
   kaggle           : # Username  
   stackoverflow    : # User number or user number and name (i.e., use "1" or "1/jeff-atwood")    
 
   # Social media
   artstation       : # Username
-  bluesky          : "bsky.app" # Replace this with you Bluesky username
+  bluesky          :
   facebook         : # Username
   flickr           : # Username
   foursquare       : # Username
@@ -260,7 +260,8 @@ defaults:
       type: teaching
     values:
       layout: single
-      author_profile: true
+      author_profile: false
+      no_sidebar: true
       share: true
       comments: true
   # _publications
@@ -269,7 +270,8 @@ defaults:
       type: publications
     values:
       layout: single
-      author_profile: true
+      author_profile: false
+      no_sidebar: true
       share: true
       comments: true
   # _portfolio
@@ -278,7 +280,8 @@ defaults:
       type: portfolio
     values:
       layout: single
-      author_profile: true
+      author_profile: false
+      no_sidebar: true
       share: true
       comment: true
   # _talks

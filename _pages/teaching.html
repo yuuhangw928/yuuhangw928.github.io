@@ -1,12 +1,73 @@
 ---
 layout: archive
-title: "Teaching"
-permalink: /teaching/
-author_profile: true
+title: "Work"
+permalink: /work/
+redirect_from:
+  - /teaching/
+author_profile: false
+no_sidebar: true
+header:
+  overlay_image: background3.jpg
+  overlay_filter: 0.45
 ---
 
-{% include base_path %}
+<style>
+  .work-intro {
+    margin-bottom: 1.5rem;
+    color: #475569;
+    line-height: 1.8;
+  }
 
-{% for post in site.teaching reversed %}
-  {% include archive-single.html %}
-{% endfor %}
+  .work-block {
+    margin-bottom: 1.5rem;
+    padding: 1.2rem 1.3rem;
+    border: 1px solid #e7ecf2;
+    border-radius: 16px;
+    background: #ffffff;
+    box-shadow: 0 8px 22px rgba(15, 23, 42, 0.04);
+  }
+
+  .work-block h2 {
+    margin-top: 0;
+    margin-bottom: 0.45rem;
+    font-size: 1.2rem;
+  }
+
+  .work-title-link {
+    color: #0f172a;
+    text-decoration: none;
+  }
+
+  .work-title-link:hover {
+    text-decoration: underline;
+  }
+
+  .work-role {
+    margin: 0 0 0.9rem;
+    color: #64748b;
+    font-size: 0.95rem;
+  }
+
+  .work-block ul {
+    margin-bottom: 0;
+  }
+</style>
+
+<div class="work-block">
+  <h2><a class="work-title-link" href="/work/uav-industrial-inspection/">Xi'an Innovative Aviation Technology Co., Ltd.</a></h2>
+  <p class="work-role">UAV-based intelligent inspection and forest fire monitoring projects</p>
+  <ul>
+    <li>Responsible for technical solution design, bid proposal preparation, and project application for UAV-based intelligent inspection and forest fire monitoring projects.</li>
+    <li>Conducted market and technical research on UAV docking station products and competitors, developing standardized solutions and product analysis reports.</li>
+    <li>Participated in UAV and docking station deployment and implementation, coordinating R&amp;D, on-site construction, and customer requirements.</li>
+    <li>Responsible for customer technical communication, product presentations, and preparation of technical promotional materials.</li>
+  </ul>
+</div>
+
+<div class="work-block">
+  <h2><a class="work-title-link" href="/work/lightning-fire-rs/">Xi'an Envmap Digital Technology Co., Ltd.</a></h2>
+  <p class="work-role">Lightning-caused wildfire remote sensing monitoring model development</p>
+  <ul>
+    <li>Responsible for lightning-caused wildfire remote sensing monitoring model development.</li>
+  </ul>
+</div>

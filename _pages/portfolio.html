@@ -1,14 +1,44 @@
 ---
 layout: archive
-title: "Portfolio"
-permalink: /portfolio/
-author_profile: true
+title: "Research"
+permalink: /research/
+redirect_from:
+  - /portfolio/
+author_profile: false
+no_sidebar: true
+header:
+  overlay_image: background4.jpg
+  overlay_filter: 0.45
 ---
 
+<style>
+  .archive .list__item {
+    margin-bottom: 2rem;
+  }
+
+  .archive .list__item:last-child {
+    margin-bottom: 0;
+  }
+
+  .archive .archive__item {
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid #e8edf3;
+  }
+
+  .archive .archive__item-excerpt img {
+    display: block !important;
+    max-width: 85% !important;
+    margin: 0.9rem auto !important;
+  }
+</style>
+ 
 {% include base_path %}
 
 
 {% for post in site.portfolio %}
+  {% if post.permalink == "/research/lightning-fire-rs/" %}
+    {% continue %}
+  {% endif %}
   {% include archive-single.html %}
 {% endfor %}
 

@@ -1,4 +1,118 @@
 {% include base_path %}
+<style>
+  .greedy-nav,
+  .greedy-nav .visible-links,
+  .greedy-nav .visible-links li {
+    overflow: visible !important;
+  }
+
+  .masthead__menu-item--dropdown {
+    position: relative;
+  }
+
+  .masthead__menu-item--dropdown > a::after {
+    content: " \25BE";
+    font-size: 0.72em;
+  }
+
+  .masthead__dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 13rem;
+    padding: 0.35rem 0;
+    margin-top: 0.35rem;
+    margin: 0;
+    list-style: none;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    border-radius: 16px;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: 0 18px 34px rgba(15, 23, 42, 0.12);
+    display: none;
+    z-index: 200;
+  }
+
+  .masthead__dropdown li {
+    margin: 0;
+    padding: 0;
+    display: block !important;
+  }
+
+  .masthead__dropdown a {
+    display: block;
+    padding: 0.58rem 0.95rem;
+    white-space: nowrap;
+    text-decoration: none;
+    border-radius: 10px;
+    margin: 0 !important;
+  }
+
+  .masthead__dropdown a:hover {
+    background: #dff5f1;
+    color: #0f172a;
+  }
+
+  .masthead__menu-item.selected > a {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+  }
+
+  .masthead__menu-item.selected .masthead__dropdown a {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+  }
+
+  .masthead__menu-item--dropdown.selected > a {
+    pointer-events: auto;
+    cursor: pointer;
+  }
+
+  .masthead__dropdown .is-active {
+    background: #e2f6f2;
+    color: #0f172a;
+    font-weight: 700;
+  }
+
+  .masthead__dropdown .is-active:hover {
+    background: #d6f1ec;
+  }
+
+  .masthead__menu-item--dropdown:hover .masthead__dropdown,
+  .masthead__menu-item--dropdown:focus-within .masthead__dropdown {
+    display: block;
+  }
+
+  html[data-theme="dark"] .masthead__dropdown,
+  body[data-theme="dark"] .masthead__dropdown {
+    background: rgba(17, 24, 39, 0.9);
+    border-color: rgba(100, 116, 139, 0.32);
+    box-shadow: 0 16px 28px rgba(2, 6, 23, 0.35);
+  }
+
+  html[data-theme="dark"] .masthead__dropdown a,
+  body[data-theme="dark"] .masthead__dropdown a {
+    color: #ffffff !important;
+  }
+
+  html[data-theme="dark"] .masthead__dropdown a:hover,
+  body[data-theme="dark"] .masthead__dropdown a:hover {
+    background: rgba(45, 212, 191, 0.18);
+    color: #ecfeff !important;
+  }
+
+  html[data-theme="dark"] .masthead__dropdown .is-active,
+  body[data-theme="dark"] .masthead__dropdown .is-active {
+    background: rgba(45, 212, 191, 0.14);
+    color: #ffffff;
+  }
+
+  html[data-theme="dark"] .masthead__dropdown .is-active:hover,
+  body[data-theme="dark"] .masthead__dropdown .is-active:hover {
+    background: rgba(45, 212, 191, 0.22);
+  }
+</style>
 <div class="masthead">
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
@@ -14,8 +128,25 @@
             {% else %}
               {% assign domain = base_path %}
             {% endif %}
-            <li class="masthead__menu-item {% if page.url contains link.url and link.url != '/' %}selected{% endif %}">
+            <li class="masthead__menu-item {% if page.url contains link.url and link.url != '/' %}selected{% endif %} {% if link.children %}masthead__menu-item--dropdown{% endif %}">
               <a href="{{ domain }}{{ link.url }}">{{ link.title }}</a>
+              {% if link.children %}
+                <ul class="masthead__dropdown">
+                  {% for child in link.children %}
+                    {% if child.url contains 'http' %}
+                      {% assign child_domain = '' %}
+                    {% else %}
+                      {% assign child_domain = base_path %}
+                    {% endif %}
+                    {% if child.url == page.url %}
+                      {% assign child_active = 'is-active' %}
+                    {% else %}
+                      {% assign child_active = '' %}
+                    {% endif %}
+                    <li><a href="{{ child_domain }}{{ child.url }}" class="{{ child_active }}">{{ child.title }}</a></li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
             </li>
           {% endfor %}
           <li id="theme-toggle" class="masthead__menu-item persist tail">
